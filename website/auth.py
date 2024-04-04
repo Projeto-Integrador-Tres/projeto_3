@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template, flash, redirect, url_for
 from .models import Usuario
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db #DB importado do arquivo init
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
@@ -15,18 +16,21 @@ def login():
         usuario = Usuario.query.filter_by(email=email).first()
         if usuario:
             if check_password_hash(usuario.senha, senha):
-                print('Logado')
-                return redirect(url_for('views.home')) #Futuramente redirecionar para página de conteúdos 
+                login_user(usuario)
+                print('Usuário logado')
+                return redirect(url_for('views.nivelamento')) #Futuramente redirecionar para página de conteúdos 
             else: 
                 print('Senha incorreta')
         else: 
             print('E-mail incorreto')
 
-    return "Login"
+    return render_template("login.html", usuario = current_user)
 
 @auth.route('/logout')
+@login_required
 def logout():
-    return "logout"
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/cadastro-usuario', methods=['GET', 'POST'])
 def sign_up():
@@ -44,7 +48,7 @@ def sign_up():
             db.session.add(novo_usuario)
             db.session.commit()
             #flash('Conta criada com sucesso!') #Futuramente usar flash para criar alertas no html
-            return redirect(url_for('views.home'))
+            return redirect(url_for('auth.login'))
 
 
     return render_template("cadastro_usuario.html")
