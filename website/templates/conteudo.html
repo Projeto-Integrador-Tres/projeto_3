@@ -5,4 +5,22 @@
 
 <h1>Conteúdo Educacional</h1>
 
+<ul>
+    {% for conteudo in conteudos %}
+    <li>
+        <strong>Título da Postagem:</strong> {{ conteudo.titulo }}
+    </li>
+    <li>
+        <strong>Descrição da Postagem:</strong> {{conteudo.descricao}}
+    </li>
+    <li>
+        <strong>URL da Postagem:</strong> <a href= {{conteudo.url}} target="_blank">Clique aqui para acessar o conteúdo!</a>
+    </li>
+    <li>
+        <strong>Nível da Postagem:</strong> {{conteudo.nivel_conteudo}}
+    </li>
+    <br>
+    {% endfor %}
+</ul>
+
 {% endblock %}

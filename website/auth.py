@@ -17,7 +17,7 @@ def login():
         if usuario:
             if check_password_hash(usuario.senha, senha):
                 login_user(usuario)
-                print('Usuário logado')
+                flash('Usuário logado', category='success')
                 return redirect(url_for('views.nivelamento')) #Futuramente redirecionar para página de conteúdos 
             else: 
                 print('Senha incorreta')
@@ -39,12 +39,13 @@ def sign_up():
         nome = request.form.get('nome')
         email = request.form.get('email')
         senha = request.form.get('senha')
+        nivel_usuario = request.form.get('nivel_usuario')
 
         usuario = Usuario.query.filter_by(email=email).first()
         if usuario:
             print("Usuário já cadastrado!")
         else:
-            novo_usuario = Usuario(nome=nome, email=email, senha=generate_password_hash(senha, method='scrypt'))
+            novo_usuario = Usuario(nome=nome, email=email, senha=generate_password_hash(senha, method='scrypt'), nivel_usuario=nivel_usuario)
             db.session.add(novo_usuario)
             db.session.commit()
             #flash('Conta criada com sucesso!') #Futuramente usar flash para criar alertas no html
