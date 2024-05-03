@@ -45,7 +45,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import Usuario
+    from .models import Usuario, ConteudoTeste
     
     with app.app_context():
         db.create_all()
@@ -54,8 +54,8 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    login_manager.login_message = "É necessário fazer o login"
-    login_manager.login_message_category = "warning"
+    login_manager.login_message = "To access this page, you need to be logged in."
+    login_manager.login_message_category = "error"
 
     @login_manager.user_loader
     def load_usuario(id):
