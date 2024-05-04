@@ -7,7 +7,6 @@ from sqlalchemy.sql import func
 
 class Usuario(db.Model, UserMixin):
     user_id = db.Column(db.Integer, primary_key = True)
-    #id = db.Column(db.Integer, primary_key = True)
     nome = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True)
     senha = db.Column(db.String(255))
@@ -84,9 +83,3 @@ class Testeresultado(db.Model):
     question_13 = db.Column(db.String(1))
     question_14 = db.Column(db.String(1))
     question_15 = db.Column(db.String(1))
-
-'''class Testeresultado(db.Model):
-    user_id = db.Column(db.Integer, primary_key = True)
-    name_test = db.Column(db.String(50), nullable = False)
-    insert_at = db.Column(db.DateTime(timezone=True), default=func.now())
-    question_1 = db.Column(db.String(1))'''
