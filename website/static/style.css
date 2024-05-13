@@ -7,7 +7,7 @@ nav {
 /* Global styles */
 body {
     background-image: url('assets/flag21.jpg');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: absolute;
     top: 0;
     width: 100%;
@@ -20,6 +20,24 @@ body {
     font-family: Ubuntu;
     opacity: 90%;
     position: relative;
+}
+
+div.nivelamento {
+    background-image: url('assets/flag21.jpg');
+    background-repeat: repeat;
+    background-position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    filter: blur(0px);
+    text-align: center;
+    background-color: transparent;
+    color: black(24, 24, 238);
+    padding: 50px;
+    font-family: Ubuntu;
+    opacity: 90%;
+    position: relative;
+
 }
 
 header {
@@ -65,7 +83,6 @@ nav ul li a {
     padding: 20px;
     margin: 20px;
 }
-
 
 #centered-text {
     position: absolute;

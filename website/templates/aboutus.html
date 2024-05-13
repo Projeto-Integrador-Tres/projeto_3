@@ -16,7 +16,8 @@
                         <p>I'm a pratical teacher, and I'll guide you to a amazing adventure.</p>
                         <p class="lead">
                         </p>
-                    </div>"
+                    </div>
+                    <br>
                         <div class="row">
                             <div class="col-md-6">
                                 <h5>
@@ -31,6 +32,13 @@
                     </div>
                 </section>
             </main>
+
+            <section id="footer">     
+                <p>Developed by <a href="https://github.com/Projeto-Integrador-Tres/projeto_3" target="_blank">Group 016</a> - <span id="ano"></span></p>
+              </section>
+              <script>
+                document.getElementById('ano').textContent = new Date().getFullYear();
+              </script>
 
         </body>
 {% endblock %}

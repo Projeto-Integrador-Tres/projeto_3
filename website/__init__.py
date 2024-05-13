@@ -7,15 +7,15 @@ from flask_login import LoginManager
 from .config import db_config, ssh_config
 
 db = SQLAlchemy()
-DB_NAME = "database.db"
+#DB_NAME = "database.db"
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'dev'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    db.init_app(app)
+#    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+#   db.init_app(app)
 
-    '''hostname = db_config['hostname']
+    hostname = db_config['hostname']
     port_id = db_config['port']
     database = db_config['database']
     username = db_config['username']
@@ -37,7 +37,7 @@ def create_app():
 
     
     app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql+psycopg2://{username}:{pwd}@127.0.0.1:{local_port}/{database}'
-    db.init_app(app)'''
+    db.init_app(app)
 
     from .views import views
     from .auth import auth
